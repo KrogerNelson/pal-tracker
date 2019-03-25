@@ -1,6 +1,12 @@
 buildscript {
     ext {
         springBootVersion = "2.0.6.RELEASE"
+/* try without starters
+        springVersion="5.0.10.RELEASE"
+        jacksonDataTypeVersion="2.9.7"
+        logbackVersion="1.2.3"
+        annotationAPIVersion="1.3.2"
+*/
     }
 
     repositories {
@@ -9,6 +15,28 @@ buildscript {
 
     dependencies {
         classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+/* try without starters
+
+        // spring
+        classpath "org.springframework:spring-web:$springVersion"
+        classpath "org.springframework:spring-context:$springVersion"
+        classpath "org.springframework:spring-core:$springVersion"
+
+        // jackson
+        classpath "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonDataTypeVersion"
+        classpath "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonDataTypeVersion"
+        classpath "com.fasterxml.jackson.datatype:jackson-module-parameter-names:$jacksonDataTypeVersion"
+        classpath "com.fasterxml.jackson.datatype:jackson-databind:$jacksonDataTypeVersion"
+
+        // logging
+        classpath "ch.qos.logback:logback-classic:$logbackVersion"
+        // don't need others?
+
+        // annotations
+        classpath "javax.annotation:javax.annotation-api:$annotationAPIVersion"
+        
+        // man, there are a lot of these...
+*/
     }
 }
 
@@ -23,8 +51,17 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 }
 
+bootRun.environment([
+        "WELCOME_MESSAGE": "hello",
+])
+
+test.environment([
+        "WELCOME_MESSAGE": "Hello from test",
+])
 
