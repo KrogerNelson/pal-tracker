@@ -20,7 +20,7 @@ public class TimeEntryController {
     public TimeEntryController(TimeEntryRepository timeEntryRepository, MeterRegistry meterRegistry) {
         this.timeEntryRepository = timeEntryRepository;
         timeEntrySummary = meterRegistry.summary("timeEntry.summary");
-        actionCounter = meterRegistry.counter("timeentry.actionCounter");
+        actionCounter = meterRegistry.counter("timeEntry.actionCounter");
     }
 
     @PostMapping("/time-entries")
